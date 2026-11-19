@@ -25,10 +25,8 @@ services:
         value: 5000
 
   # 2. Frontend Static Site (React + Vite + Tailwind CSS)
-  - type: web
+  - type: static
     name: doomsday-frontend
-    runtime: static
-    plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
