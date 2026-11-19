@@ -35,7 +35,7 @@ export const App: React.FC = () => {
     <div className="min-h-screen bg-[#09090b] text-zinc-100 flex flex-col font-sans">
       <Navbar currentView={currentView} onSelectView={setCurrentView} />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
         {isLoading ? (
           <div className="flex flex-col items-center justify-center min-h-[50vh] space-y-3">
             <div className="animate-spin w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full" />

@@ -119,34 +119,34 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, onRefresh }) => 
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 sm:space-y-6 w-full max-w-full">
       {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-            <Film className="w-6 h-6 text-emerald-400" />
+          <h1 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+            <Film className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400" />
             Marvel Cinematic Universe Catalog
           </h1>
-          <p className="text-sm text-zinc-400">
+          <p className="text-xs sm:text-sm text-zinc-400">
             Add movies, manage watch prerequisites, and mark what you've seen.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="relative">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+          <div className="relative flex-1 sm:w-60">
             <Search className="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search movies..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 pr-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-emerald-500"
+              className="w-full pl-9 pr-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-emerald-500"
             />
           </div>
 
           <button
             onClick={openAddModal}
-            className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold rounded-lg shadow-lg shadow-emerald-900/40 transition-colors"
+            className="flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold rounded-lg shadow-lg shadow-emerald-900/40 transition-colors shrink-0"
           >
             <Plus className="w-4 h-4" />
             Add Movie
@@ -155,32 +155,32 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, onRefresh }) => 
       </div>
 
       {/* Movies Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {filteredMovies.map((movie) => {
           const prereqMovies = movie.prerequisites.map((p) => p.prerequisite).filter(Boolean);
 
           return (
             <div
               key={movie.id}
-              className={`p-5 rounded-xl border transition-all ${
+              className={`p-4 sm:p-5 rounded-xl border transition-all ${
                 movie.watched
                   ? "bg-zinc-900/50 border-emerald-900/40 hover:border-emerald-700/60"
                   : "bg-zinc-900/80 border-zinc-800/80 hover:border-zinc-700"
               }`}
             >
               <div className="flex items-start justify-between gap-2">
-                <div className="space-y-1 flex-1">
-                  <h3 className="font-semibold text-lg text-white leading-tight">
+                <div className="space-y-1 flex-1 min-w-0">
+                  <h3 className="font-semibold text-base sm:text-lg text-white leading-tight break-words">
                     {movie.title}
                   </h3>
-                  <div className="flex items-center gap-3 text-xs text-zinc-400">
+                  <div className="flex items-center gap-3 text-xs text-zinc-400 flex-wrap">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3.5 h-3.5 text-zinc-500" />
                       {movie.releaseYear}
                     </span>
                     <span className="flex items-center gap-1">
                       <Clock className="w-3.5 h-3.5 text-zinc-500" />
-                      {movie.runtime} min ({Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m)
+                      {movie.runtime}m ({Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m)
                     </span>
                   </div>
                 </div>
@@ -189,7 +189,7 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, onRefresh }) => 
                 <button
                   onClick={(e) => handleToggleWatched(movie, e)}
                   title={movie.watched ? "Mark as unwatched" : "Mark as watched"}
-                  className="p-1 text-zinc-400 hover:text-white transition-colors"
+                  className="p-1 text-zinc-400 hover:text-white transition-colors shrink-0"
                 >
                   {movie.watched ? (
                     <CheckCircle2 className="w-6 h-6 text-emerald-400" />
@@ -241,11 +241,11 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, onRefresh }) => 
 
       {/* Add / Edit Movie Modal */}
       {(isAddModalOpen || editingMovie) && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-lg p-6 space-y-5 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-lg p-5 sm:p-6 space-y-4 sm:space-y-5 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
-              <h2 className="text-xl font-bold text-white">
-                {editingMovie ? `Edit Movie: ${editingMovie.title}` : "Add MCU Movie"}
+              <h2 className="text-lg sm:text-xl font-bold text-white">
+                {editingMovie ? `Edit Movie` : "Add MCU Movie"}
               </h2>
               <button
                 onClick={() => {
@@ -253,7 +253,7 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, onRefresh }) => 
                   setEditingMovie(null);
                   setFormError(null);
                 }}
-                className="text-zinc-400 hover:text-white"
+                className="text-zinc-400 hover:text-white p-1"
               >
                 ✕
               </button>
@@ -261,7 +261,7 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, onRefresh }) => 
 
             {/* Error Banner */}
             {formError && (
-              <div className="p-3 bg-red-950/60 border border-red-500/50 rounded-lg flex items-start gap-2 text-sm text-red-200">
+              <div className="p-3 bg-red-950/60 border border-red-500/50 rounded-lg flex items-start gap-2 text-xs sm:text-sm text-red-200">
                 <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
                 <span>{formError}</span>
               </div>
@@ -300,7 +300,7 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, onRefresh }) => 
 
                 <div>
                   <label className="block text-xs font-semibold uppercase text-zinc-400 mb-1">
-                    Runtime (1–300 min) *
+                    Runtime (min) *
                   </label>
                   <input
                     type="number"
@@ -330,7 +330,7 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, onRefresh }) => 
                 <label className="block text-xs font-semibold uppercase text-zinc-400 mb-1">
                   Prerequisites (Movies to watch first)
                 </label>
-                <div className="max-h-48 overflow-y-auto p-2 bg-zinc-950 border border-zinc-800 rounded-lg space-y-1">
+                <div className="max-h-40 overflow-y-auto p-2 bg-zinc-950 border border-zinc-800 rounded-lg space-y-1">
                   {movies
                     .filter((m) => (editingMovie ? m.id !== editingMovie.id : true))
                     .map((m) => {
@@ -345,17 +345,14 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, onRefresh }) => 
                               : "hover:bg-zinc-800/60 text-zinc-300"
                           }`}
                         >
-                          <span>{m.title} ({m.releaseYear})</span>
-                          <span className="text-[10px] text-zinc-500">
-                            {isSelected ? "Selected" : "Click to add"}
+                          <span className="truncate pr-2">{m.title} ({m.releaseYear})</span>
+                          <span className="text-[10px] text-zinc-500 shrink-0">
+                            {isSelected ? "Selected" : "Add"}
                           </span>
                         </div>
                       );
                     })}
                 </div>
-                <p className="text-[11px] text-zinc-500 mt-1">
-                  Cycles are automatically validated. Adding a circular dependency triggers HTTP 409.
-                </p>
               </div>
 
               {/* Action Buttons */}
@@ -376,7 +373,7 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, onRefresh }) => 
                   disabled={isSubmitting}
                   className="px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold rounded-lg shadow-lg shadow-emerald-900/40 disabled:opacity-50"
                 >
-                  {isSubmitting ? "Saving..." : editingMovie ? "Update Movie" : "Create Movie"}
+                  {isSubmitting ? "Saving..." : editingMovie ? "Update" : "Create"}
                 </button>
               </div>
             </form>
