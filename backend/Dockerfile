@@ -25,7 +25,8 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY package*.json ./
-RUN npm ci --only=production
+COPY tsconfig.json ./
+RUN npm ci
 
 COPY prisma ./prisma
 RUN npx prisma generate
@@ -34,5 +35,5 @@ COPY --from=builder /app/dist ./dist
 
 EXPOSE 5000
 
-# Start script: push schema to postgres and start server
+# Start script: push schema to postgres, seed sample data, and start server
 CMD ["sh", "-c", "npx prisma db push && npx tsx prisma/seed.ts && node dist/index.js"]
