@@ -5,7 +5,14 @@ import {
   BookingQuoteResponse,
 } from "../types";
 
-const BASE_URL = "/api";
+const rawApiUrl = (import.meta.env.VITE_API_URL as string | undefined)?.trim() || "";
+const cleanApiUrl = rawApiUrl
+  ? rawApiUrl.startsWith("http")
+    ? rawApiUrl.replace(/\/$/, "")
+    : `https://${rawApiUrl.replace(/\/$/, "")}`
+  : "";
+
+const BASE_URL = `${cleanApiUrl}/api`;
 
 async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE_URL}${endpoint}`, {
