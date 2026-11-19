@@ -1,0 +1,44 @@
+// Prisma schema for Doomsday Ready
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Movie {
+  id              String              @id @default(uuid())
+  title           String              @unique
+  releaseYear     Int
+  runtime         Int                 // In minutes: 1–300
+  watched         Boolean             @default(false)
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  // Prerequisites: movies that must be watched before this movie
+  prerequisites   MoviePrerequisite[] @relation("MovieToPrerequisites")
+  
+  // Dependent movies: movies that have this movie as a prerequisite
+  prerequisiteFor MoviePrerequisite[] @relation("MovieAsPrerequisite")
+}
+
+model MoviePrerequisite {
+  movieId         String
+  prerequisiteId  String
+
+  movie           Movie               @relation("MovieToPrerequisites", fields: [movieId], references: [id], onDelete: Cascade)
+  prerequisite    Movie               @relation("MovieAsPrerequisite", fields: [prerequisiteId], references: [id], onDelete: Cascade)
+
+  @@id([movieId, prerequisiteId])
+}
+
+model Cinema {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  bundleSizes Int[]    // Available seat bundle sizes (1–10 bundles, 1–500 seats each)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
