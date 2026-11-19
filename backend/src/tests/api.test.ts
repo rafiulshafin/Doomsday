@@ -39,7 +39,7 @@ describe("API Endpoints Contract", () => {
   it("GET /api/cinemas/:id/booking?groupSize=44 calculates quote properly", async () => {
     vi.mocked(prisma.cinema.findUnique).mockResolvedValueOnce({
       id: "cinema-campus",
-      name: "Avengers Campus Theater",
+      name: "Lion Cinemas - Keraniganj",
       bundleSizes: [6, 9, 20],
       createdAt: new Date(),
       updatedAt: new Date(),

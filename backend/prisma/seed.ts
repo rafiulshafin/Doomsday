@@ -75,17 +75,17 @@ async function main() {
     data: { movieId: doomsday.id, prerequisiteId: endgame.id },
   });
 
-  // 3. Create Sample Cinemas (matching bundle size test cases in PDF)
+  // 3. Create Sample Cinema Halls in Bangladesh (matching bundle size test cases in PDF)
   await prisma.cinema.createMany({
     data: [
-      { name: "Stark Starkplex IMAX", bundleSizes: [1, 3, 4] },
-      { name: "Wakanda Royal Cinema", bundleSizes: [2, 5] },
-      { name: "Avengers Campus Theater", bundleSizes: [6, 9, 20] },
-      { name: "Kamar-Taj Cineplex", bundleSizes: [4, 6] },
+      { name: "Star Cineplex - Bashundhara City", bundleSizes: [1, 3, 4] },
+      { name: "Blockbuster Cinemas - Jamuna Future Park", bundleSizes: [2, 5] },
+      { name: "Lion Cinemas - Keraniganj", bundleSizes: [6, 9, 20] },
+      { name: "Sony Square Cineplex - Mirpur", bundleSizes: [4, 6] },
     ],
   });
 
-  console.log("Database seeded successfully with 8 MCU movies and 4 sample cinemas!");
+  console.log("Database seeded successfully with 8 MCU movies and 4 Bangladesh cinema halls!");
 }
 
 main()

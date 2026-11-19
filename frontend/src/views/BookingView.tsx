@@ -114,7 +114,7 @@ export const BookingView: React.FC<BookingViewProps> = ({
           className="flex items-center justify-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white text-sm font-semibold rounded-lg border border-zinc-700 transition-colors w-full sm:w-auto shrink-0"
         >
           <Plus className="w-4 h-4" />
-          Add Cinema
+          Add Cinema Hall
         </button>
       </div>
 
@@ -130,7 +130,7 @@ export const BookingView: React.FC<BookingViewProps> = ({
           {/* Cinema Selector */}
           <div>
             <label className="block text-xs font-semibold uppercase text-zinc-400 mb-1.5">
-              Select Cinema
+              Select Cinema Hall
             </label>
             <select
               value={selectedCinemaId}
@@ -299,7 +299,7 @@ export const BookingView: React.FC<BookingViewProps> = ({
         <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm">
           <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-md p-5 sm:p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
-              <h3 className="font-bold text-base sm:text-lg text-white">Add Cinema</h3>
+              <h3 className="font-bold text-base sm:text-lg text-white">Add Cinema Hall</h3>
               <button
                 onClick={() => setIsAddCinemaOpen(false)}
                 className="text-zinc-400 hover:text-white p-1"
@@ -317,12 +317,12 @@ export const BookingView: React.FC<BookingViewProps> = ({
             <form onSubmit={handleCreateCinema} className="space-y-4">
               <div>
                 <label className="block text-xs font-semibold uppercase text-zinc-400 mb-1">
-                  Cinema Name *
+                  Cinema Hall Name *
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Metro IMAX"
+                  placeholder="e.g. Star Cineplex - Bashundhara City"
                   value={newCinemaName}
                   onChange={(e) => setNewCinemaName(e.target.value)}
                   className="w-full px-3 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-sm text-zinc-200 focus:outline-none focus:border-emerald-500"
