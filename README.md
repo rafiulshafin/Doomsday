@@ -240,7 +240,7 @@ This single command will:
 3. Build and serve the **React frontend** via Nginx on port `3000`.
 
 Open your browser to:
-- **Frontend App**: [http://localhost:3000](http://localhost:3000)
+- **Frontend App**: [http://localhost:5173](http://localhost:5173)
 - **Backend API**: [http://localhost:5000/api](http://localhost:5000/api)
 - **API Health Check**: [http://localhost:5000/health](http://localhost:5000/health)
 
