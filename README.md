@@ -13,6 +13,17 @@
 
 ---
 
+## 🔗 Live Application & Access Links
+
+| Environment | Access Link | Description |
+|---|---|---|
+| 🌐 **Live Cloud Demo (Render)** | **[https://doomsday-frontend.onrender.com](https://doomsday-frontend.onrender.com)** | **Hosted 24/7 online.** Anyone can open this link directly in their browser or mobile device with zero setup. |
+| 💻 **Local Docker (Frontend)** | **[http://localhost:5173](http://localhost:5173)** or **[http://127.0.0.1:5173](http://127.0.0.1:5173)** | Accessible on your computer after running `docker compose up`. |
+| 🔌 **Local Docker (Backend API)** | **[http://localhost:5000/api](http://localhost:5000/api)** | REST API endpoints for movies, rewatch ordering, and cinemas. |
+| 🩺 **Backend Healthcheck** | **[http://localhost:5000/health](http://localhost:5000/health)** | Instant API health verification (`{"status":"ok"}`). |
+
+---
+
 ## 📑 Table of Contents
 - [Project Overview](#-project-overview)
 - [Rules & AI Disclosure](#-rules--ai-disclosure)
@@ -237,14 +248,16 @@ docker compose up --build
 This single command will:
 1. Spin up a **PostgreSQL 16** database container with health checks.
 2. Build and start the **Express backend API** on port `5000` (automatically runs database migrations and seeds initial MCU movies and cinemas).
-3. Build and serve the **React frontend** via Nginx on port `3000`.
+3. Build and serve the **React frontend** via Nginx on port `5173`.
 
-Open your browser to:
-- **Frontend App**: [http://localhost:5173](http://localhost:5173)
-- **Backend API**: [http://localhost:5000/api](http://localhost:5000/api)
-- **API Health Check**: [http://localhost:5000/health](http://localhost:5000/health)
+#### 💻 How to Open in Your Browser (Local Machine):
+Once the command finishes starting the containers, copy and paste either of these links into your web browser:
+* 👉 **[http://localhost:5173](http://localhost:5173)**
+* 👉 **[http://127.0.0.1:5173](http://127.0.0.1:5173)**
 
-To stop the containers:
+*(Alternatively, in the **Docker Desktop** application under the "Containers" list, click the blue **`5173:80`** port link next to `doomsday_frontend` to launch it immediately).*
+
+To stop all local containers:
 ```bash
 docker compose down
 ```
